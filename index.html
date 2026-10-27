@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hrishi Kumar Prajapati | Aspiring Fullstack Developer</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+    rel="stylesheet">
+
+  <!-- External Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+            heading: ['Space Grotesk', 'sans-serif'],
+          },
+          colors: {
+            darkBg: '#030712',
+            lightBg: '#f8fafc',
+            neonCyan: '#38bdf8',
+            neonPurple: '#a855f7',
+            neonBlue: '#3b82f6',
+          },
+          animation: {
+            'pulse-glow': 'pulseGlow 4s ease-in-out infinite alternate',
+            'float-slow': 'float 5s ease-in-out infinite',
+            'float-delayed': 'float 5s ease-in-out 2.5s infinite',
+            'spin-slow': 'spin 12s linear infinite',
+            'bounce-soft': 'bounceSoft 2s infinite',
+          },
+          keyframes: {
+            pulseGlow: {
+              '0%': { opacity: '0.25', transform: 'scale(1) rotate(0deg)' },
+              '100%': { opacity: '0.55', transform: 'scale(1.2) rotate(10deg)' }
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+              '50%': { transform: 'translateY(-14px) rotate(3deg)' }
+            },
+            bounceSoft: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-8px)' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="antialiased selection:bg-cyan-500 selection:text-white relative overflow-x-hidden">
+
+  <!-- Particle Background Canvas -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- Glowing Visual Orbs -->
+  <div
+    class="fixed top-0 left-1/4 w-[350px] sm:w-[550px] h-[350px] sm:h-[550px] bg-sky-500/15 rounded-full blur-[130px] pointer-events-none animate-pulse-glow z-0">
+  </div>
+  <div
+    class="fixed bottom-10 right-10 w-[380px] sm:w-[600px] h-[380px] sm:h-[600px] bg-purple-500/15 rounded-full blur-[150px] pointer-events-none animate-pulse-glow z-0"
+    style="animation-delay: 2s;"></div>
+
+  <!-- Main Content Wrapper -->
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- 1. Floating Glass Navigation Bar -->
+    <header class="fixed top-3 sm:top-5 left-1/2 -translate-x-1/2 w-[94%] max-w-5xl z-50">
+      <nav
+        class="glass-nav border rounded-full px-4 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between shadow-xl">
+
+        <!-- Logo -->
+        <a href="#home" class="flex items-center gap-2.5 group">
+          <span
+            class="w-3.5 h-3.5 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 group-hover:scale-150 transition-transform duration-300 shadow-[0_0_15px_#38bdf8] animate-pulse"></span>
+          <span
+            class="font-heading font-extrabold text-lg sm:text-xl tracking-tight text-heading-primary group-hover:text-cyan-400 transition-colors">Hrishi<span
+              class="text-cyan-500">.dev</span></span>
+        </a>
+
+        <!-- Desktop Links -->
+        <ul
+          class="hidden md:flex items-center gap-1 bg-slate-800/20 dark:bg-slate-900/40 p-1 rounded-full border border-white/10 dark:border-white/5">
+          <li><a href="#home"
+              class="nav-link px-4 py-1.5 rounded-full text-xs font-bold tracking-wide transition-all duration-300 block text-slate-300 hover:text-cyan-400 hover:bg-white/10">Home</a>
+          </li>
+          <li><a href="#about"
+              class="nav-link px-4 py-1.5 rounded-full text-xs font-bold tracking-wide transition-all duration-300 block text-slate-300 hover:text-cyan-400 hover:bg-white/10">About</a>
+          </li>
+          <li><a href="#skills"
+              class="nav-link px-4 py-1.5 rounded-full text-xs font-bold tracking-wide transition-all duration-300 block text-slate-300 hover:text-cyan-400 hover:bg-white/10">Skills</a>
+          </li>
+          <li><a href="#projects"
+              class="nav-link px-4 py-1.5 rounded-full text-xs font-bold tracking-wide transition-all duration-300 block text-slate-300 hover:text-cyan-400 hover:bg-white/10">Projects</a>
+          </li>
+          <li><a href="#contact"
+              class="nav-link px-4 py-1.5 rounded-full text-xs font-bold tracking-wide transition-all duration-300 block text-slate-300 hover:text-cyan-400 hover:bg-white/10">Contact</a>
+          </li>
+        </ul>
+
+        <!-- Controls -->
+        <div class="flex items-center gap-3">
+          <button id="theme-toggle"
+            class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800/80 border border-slate-300 dark:border-white/10 flex items-center justify-center text-slate-700 dark:text-slate-200 hover:text-cyan-500 hover:border-cyan-500/50 hover:rotate-45 transition-all duration-300 shadow-md"
+            title="Toggle Light / Dark Theme">
+            <i class="fa-solid fa-moon text-sm" id="theme-icon"></i>
+          </button>
+          <button id="mobile-menu-btn"
+            class="md:hidden w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800/80 border border-slate-300 dark:border-white/10 flex items-center justify-center text-slate-800 dark:text-slate-200">
+            <i class="fa-solid fa-bars text-base" id="menu-icon"></i>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Mobile Navigation Drawer -->
+      <div id="mobile-menu"
+        class="hidden md:hidden mt-3 glass-card rounded-2xl p-5 border border-slate-200 dark:border-white/10 flex-col gap-3 shadow-2xl transition-all">
+        <a href="#home"
+          class="mobile-nav-link px-4 py-2.5 rounded-xl text-sm font-bold text-slate-800 dark:text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-500 flex items-center gap-3 transition-transform hover:translate-x-2">
+          <i class="fa-solid fa-house text-cyan-500 w-5"></i> Home
+        </a>
+        <a href="#about"
+          class="mobile-nav-link px-4 py-2.5 rounded-xl text-sm font-bold text-slate-800 dark:text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-500 flex items-center gap-3 transition-transform hover:translate-x-2">
+          <i class="fa-solid fa-user text-cyan-500 w-5"></i> About
+        </a>
+        <a href="#skills"
+          class="mobile-nav-link px-4 py-2.5 rounded-xl text-sm font-bold text-slate-800 dark:text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-500 flex items-center gap-3 transition-transform hover:translate-x-2">
+          <i class="fa-solid fa-laptop-code text-cyan-500 w-5"></i> Skills
+        </a>
+        <a href="#projects"
+          class="mobile-nav-link px-4 py-2.5 rounded-xl text-sm font-bold text-slate-800 dark:text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-500 flex items-center gap-3 transition-transform hover:translate-x-2">
+          <i class="fa-solid fa-folder-open text-cyan-500 w-5"></i> Projects
+        </a>
+        <a href="#contact"
+          class="mobile-nav-link px-4 py-2.5 rounded-xl text-sm font-bold text-slate-800 dark:text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-500 flex items-center gap-3 transition-transform hover:translate-x-2">
+          <i class="fa-solid fa-paper-plane text-cyan-500 w-5"></i> Contact
+        </a>
+      </div>
+    </header>
+
+    <!-- 2. Hero Section -->
+    <section id="home" class="min-h-screen pt-32 sm:pt-40 pb-16 flex flex-col justify-between relative">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center my-auto">
+        <div class="lg:col-span-7 space-y-6 text-left animated-reveal">
+          <div
+            class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-700 dark:text-purple-300 text-xs font-bold backdrop-blur-md shadow-lg animate-bounce-soft">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 -ml-5"></span>
+            <span>Fresher • Open for Entry-Level Roles</span>
+          </div>
+
+          <h1
+            class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-heading leading-tight text-heading-primary">
+            Hi, I'm <br />
+            <span class="text-gradient">Hrishi Kumar Prajapati</span>
+          </h1>
+
+          <h2 class="text-xl sm:text-2xl font-bold font-heading text-cyan-600 dark:text-cyan-400">
+            Aspiring Full Stack Developer
+          </h2>
+
+          <p class="text-body-muted text-sm sm:text-base leading-relaxed max-w-2xl">
+            Passionate BCA 5th Semester student from Jaunpur dedicated to crafting modern fullstack web applications
+            using Node.js, Express, JavaScript, SQL, and MongoDB.
+          </p>
+
+          <div class="pt-2 flex flex-wrap items-center gap-4">
+            <a href="#projects"
+              class="px-7 py-3.5 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-bold text-sm transition-all duration-300 shadow-[0_0_25px_rgba(56,189,248,0.4)] flex items-center gap-2 group hover:scale-105">
+              <span>View My Work</span>
+              <i class="fa-solid fa-arrow-right group-hover:translate-x-1.5 transition-transform"></i>
+            </a>
+
+            <a href="#contact"
+              class="px-7 py-3.5 rounded-xl bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-800 dark:text-white font-bold text-sm border border-slate-300 dark:border-white/10 transition-all duration-300 flex items-center gap-2 hover:scale-105">
+              <span>Get In Touch</span>
+            </a>
+
+            <div class="flex items-center gap-2 sm:ml-2">
+              <a href="https://github.com/hrishiprajapati7" target="_blank" rel="noopener noreferrer"
+                class="w-11 h-11 rounded-xl bg-slate-200 dark:bg-slate-900 border border-slate-300 dark:border-white/10 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-cyan-500 hover:border-cyan-500/50 hover:scale-110 hover:rotate-6 transition-all"
+                title="GitHub">
+                <i class="fa-brands fa-github text-lg"></i>
+              </a>
+              <a href="mailto:hrishiprajapati7@gmail.com"
+                class="w-11 h-11 rounded-xl bg-slate-200 dark:bg-slate-900 border border-slate-300 dark:border-white/10 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-cyan-500 hover:border-cyan-500/50 hover:scale-110 hover:-rotate-6 transition-all"
+                title="Email">
+                <i class="fa-solid fa-envelope text-lg"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 flex justify-center lg:justify-end relative animated-reveal">
+          <div class="relative w-56 h-56 sm:w-72 sm:h-72 rounded-full p-2 flex items-center justify-center">
+            <div
+              class="absolute inset-0 rounded-full bg-gradient-to-tr from-cyan-500 via-purple-500 to-pink-500 animate-spin-slow opacity-90 blur-sm">
+            </div>
+            <div class="absolute inset-1 rounded-full bg-slate-100 dark:bg-slate-950"></div>
+
+            <div
+              class="relative w-full h-full rounded-full overflow-hidden border-2 border-cyan-400/50 shadow-2xl bg-slate-900 flex items-center justify-center group">
+              <img src="myimg.jpg.jpeg"
+                alt="Hrishi Kumar Prajapati"
+                class="w-full h-full object-cover object-center filter grayscale-[15%] group-hover:grayscale-0 transition-all duration-900 group-hover:scale-110"
+                onerror="this.src='https://placehold.co/400x400/0f172a/38bdf8?text=HKP+Fresher'" /> 
+            </div>
+
+            <div
+              class="absolute -bottom-1 -left-1 sm:bottom-1 sm:left-1 w-12 h-12 sm:w-14 sm:h-14 rounded-2xl glass-card flex items-center justify-center text-cyan-500 text-xl border border-slate-200 dark:border-white/10 shadow-xl animate-float-slow">
+              <i class="fa-brands fa-node-js text-emerald-500 text-2xl"></i>
+            </div>
+            <div
+              class="absolute top-2 -right-1 sm:top-4 sm:right-0 w-12 h-12 sm:w-14 sm:h-14 rounded-2xl glass-card flex items-center justify-center text-purple-500 text-xl border border-slate-200 dark:border-white/10 shadow-xl animate-float-delayed">
+              <i class="fa-solid fa-database text-sky-400 text-2xl"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="w-full flex justify-center pt-8 sm:pt-12">
+        <a href="#about"
+          class="flex flex-col items-center gap-2 text-slate-400 hover:text-cyan-500 transition-colors group">
+          <span class="text-[11px] font-bold tracking-widest uppercase font-heading">Scroll Down</span>
+          <i
+            class="fa-solid fa-chevron-down text-xs group-hover:translate-y-1.5 transition-transform animate-bounce"></i>
+        </a>
+      </div>
+    </section>
+
+    <!-- 3. About Section -->
+    <section id="about" class="py-20 border-t border-slate-200 dark:border-white/10">
+      <div class="space-y-12">
+        <div class="space-y-2 animated-reveal">
+          <span class="text-xs font-extrabold uppercase tracking-widest text-cyan-500 font-heading">Get To Know
+            Me</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold font-heading text-heading-primary">About Me</h2>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <div class="lg:col-span-7 glass-card p-6 sm:p-8 rounded-3xl space-y-6 animated-reveal">
+            <h3 class="text-xl sm:text-2xl font-bold font-heading text-heading-primary leading-snug">
+              Aspiring Software Developer passionate about creating web applications
+            </h3>
+
+            <p class="text-body-muted text-sm sm:text-base leading-relaxed">
+              Hello! I'm Hrishi Kumar Prajapati, an enthusiastic Fresher Full Stack Developer currently pursuing my
+              Bachelor of Computer Applications (BCA 5th Semester) in Jaunpur, Uttar Pradesh.
+            </p>
+
+            <p class="text-body-muted text-sm sm:text-base leading-relaxed">
+              My core focus is on fullstack web development, building intuitive user interfaces, efficient APIs, and
+              structured database systems using HTML, CSS, JavaScript, Bootstrap, Node.js, SQL, and MongoDB.
+            </p>
+
+            <div class="pt-2 flex flex-wrap gap-4">
+              <button onclick="downloadResume()"
+                class="px-5 py-2.5 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-600 dark:text-cyan-400 border border-cyan-500/30 font-bold text-xs sm:text-sm flex items-center gap-2 transition-all hover:scale-105">
+                <i class="fa-solid fa-download"></i> Download Resume
+              </button>
+              <button onclick="downloadCoverLetter()"
+                class="px-5 py-2.5 rounded-xl bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-white/10 font-bold text-xs sm:text-sm flex items-center gap-2 transition-all hover:scale-105">
+                <i class="fa-solid fa-file-lines"></i> Cover Letter
+              </button>
+            </div>
+
+            <div class="pt-4 border-t border-slate-200 dark:border-white/10 flex flex-wrap gap-2">
+              <span
+                class="px-3 py-1.5 rounded-full bg-badge text-xs font-semibold text-body-muted flex items-center gap-2 hover:scale-105 transition-transform">
+                <i class="fa-solid fa-graduation-cap text-amber-500"></i> BCA 5th Sem Student
+              </span>
+              <span
+                class="px-3 py-1.5 rounded-full bg-badge text-xs font-semibold text-body-muted flex items-center gap-2 hover:scale-105 transition-transform">
+                <i class="fa-solid fa-bolt text-cyan-500"></i> Quick Learner
+              </span>
+              <span
+                class="px-3 py-1.5 rounded-full bg-badge text-xs font-semibold text-body-muted flex items-center gap-2 hover:scale-105 transition-transform">
+                <i class="fa-solid fa-code text-purple-500"></i> Fresher Full Stack Dev
+              </span>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 space-y-6 animated-reveal">
+            <div class="glass-card p-6 rounded-3xl space-y-4">
+              <h4 class="text-xs font-extrabold uppercase tracking-widest text-body-muted font-heading">Key Highlights
+              </h4>
+
+              <ul class="space-y-4 text-sm">
+                <li class="flex items-start gap-3">
+                  <div
+                    class="w-8 h-8 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-500 shrink-0">
+                    <i class="fa-solid fa-user-graduate text-sm"></i>
+                  </div>
+                  <div>
+                    <strong class="block text-heading-primary font-bold">BCA Student (5th Sem)</strong>
+                    <span class="text-xs text-body-muted">Currently enrolled in Jaunpur, UP.</span>
+                  </div>
+                </li>
+
+                <li class="flex items-start gap-3">
+                  <div
+                    class="w-8 h-8 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-500 shrink-0">
+                    <i class="fa-solid fa-code text-sm"></i>
+                  </div>
+                  <div>
+                    <strong class="block text-heading-primary font-bold">Full Stack Foundation</strong>
+                    <span class="text-xs text-body-muted">Strong hold on Node.js, Express, SQL & MongoDB.</span>
+                  </div>
+                </li>
+
+                <li class="flex items-start gap-3">
+                  <div
+                    class="w-8 h-8 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-500 shrink-0">
+                    <i class="fa-solid fa-briefcase text-sm"></i>
+                  </div>
+                  <div>
+                    <strong class="block text-heading-primary font-bold">Ready For Job Opportunities</strong>
+                    <span class="text-xs text-body-muted">Seeking Entry-Level Full Stack / Web Developer roles.</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="grid grid-cols-3 gap-3 sm:gap-4">
+              <div class="glass-card p-4 sm:p-5 rounded-2xl text-center space-y-1 hover:scale-105 transition-transform">
+                <div class="text-2xl sm:text-3xl font-extrabold font-heading text-cyan-500">Fresher</div>
+                <div class="text-[10px] sm:text-[11px] font-bold text-body-muted uppercase tracking-wider">Status</div>
+              </div>
+
+              <div class="glass-card p-4 sm:p-5 rounded-2xl text-center space-y-1 hover:scale-105 transition-transform">
+                <div class="text-2xl sm:text-3xl font-extrabold font-heading text-purple-500">5+</div>
+                <div class="text-[10px] sm:text-[11px] font-bold text-body-muted uppercase tracking-wider">Projects
+                </div>
+              </div>
+
+              <div class="glass-card p-4 sm:p-5 rounded-2xl text-center space-y-1 hover:scale-105 transition-transform">
+                <div class="text-2xl sm:text-3xl font-extrabold font-heading text-sky-500">7+</div>
+                <div class="text-[10px] sm:text-[11px] font-bold text-body-muted uppercase tracking-wider">Technologies
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Technical Skills Section -->
+    <section id="skills" class="py-20 border-t border-slate-200 dark:border-white/10">
+      <div class="space-y-12">
+        <div class="space-y-2 animated-reveal">
+          <span class="text-xs font-extrabold uppercase tracking-widest text-cyan-500 font-heading">Skills I Have</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold font-heading text-heading-primary">Technical Armory</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="glass-card p-6 rounded-3xl space-y-5 border-t-4 border-t-cyan-500 animated-reveal">
+            <div class="flex items-center gap-3">
+              <div
+                class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-500">
+                <i class="fa-solid fa-desktop text-lg"></i>
+              </div>
+              <h3 class="font-bold text-lg font-heading text-heading-primary">Frontend Tools</h3>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+              <div
+                class="p-3 rounded-xl bg-slate-100 dark:bg-slate-900/80 border border-slate-200 dark:border-white/5 flex items-center gap-2.5 hover:scale-105 transition-transform">
+                <i class="fa-brands fa-html5 text-orange-500 text-lg"></i>
+                <span class="text-xs font-bold text-heading-primary">HTML5</span>
+              </div>
+              <div
+                class="p-3 rounded-xl bg-slate-100 dark:bg-slate-900/80 border border-slate-200 dark:border-white/5 flex items-center gap-2.5 hover:scale-105 transition-transform">
+                <i class="fa-brands fa-css3-alt text-blue-500 text-lg"></i>
+                <span class="text-xs font-bold text-heading-primary">CSS3</span>
+              </div>
+              <div
+                class="p-3 rounded-xl bg-slate-100 dark:bg-slate-900/80 border border-slate-200 dark:border-white/5 flex items-center gap-2.5 hover:scale-105 transition-transform">
+                <i class="fa-brands fa-js text-yellow-500 text-lg"></i>
+                <span class="text-xs font-bold text-heading-primary">JavaScript</span>
+              </div>
+              <div
+                class="p-3 rounded-xl bg-slate-100 dark:bg-slate-900/80 border border-slate-200 dark:border-white/5 flex items-center gap-2.5 hover:scale-105 transition-transform">
+                <i class="fa-brands fa-bootstrap text-purple-500 text-lg"></i>
+                <span class="text-xs font-bold text-heading-primary">Bootstrap</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass-card p-6 rounded-3xl space-y-5 border-t-4 border-t-purple-500 animated-reveal">
+            <div class="flex items-center gap-3">
+              <div
+                class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-500">
+                <i class="fa-solid fa-database text-lg"></i>
+              </div>
+              <h3 class="font-bold text-lg font-heading text-heading-primary">Backend & Databases</h3>
+            </div>
+
+            <div class="grid grid-cols-1 gap-3">
+              <div
+                class="p-3 rounded-xl bg-slate-100 dark:bg-slate-900/80 border border-slate-200 dark:border-white/5 flex items-center gap-2.5 hover:scale-105 transition-transform">
+                <i class="fa-brands fa-node-js text-emerald-500 text-lg"></i>
+                <span class="text-xs font-bold text-heading-primary">Node.js / Express</span>
+              </div>
+              <div
+                class="p-3 rounded-xl bg-slate-100 dark:bg-slate-900/80 border border-slate-200 dark:border-white/5 flex items-center gap-2.5 hover:scale-105 transition-transform">
+                <i class="fa-solid fa-database text-sky-500 text-lg"></i>
+                <span class="text-xs font-bold text-heading-primary">SQL Queries & Schema</span>
+              </div>
+              <div
+                class="p-3 rounded-xl bg-slate-100 dark:bg-slate-900/80 border border-slate-200 dark:border-white/5 flex items-center gap-2.5 hover:scale-105 transition-transform">
+                <i class="fa-solid fa-leaf text-emerald-500 text-lg"></i>
+                <span class="text-xs font-bold text-heading-primary">MongoDB Database</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass-card p-6 rounded-3xl space-y-5 border-t-4 border-t-amber-500 animated-reveal">
+            <div class="flex items-center gap-3">
+              <div
+                class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-500">
+                <i class="fa-solid fa-file-excel text-lg"></i>
+              </div>
+              <h3 class="font-bold text-lg font-heading text-heading-primary">Productivity Tools</h3>
+            </div>
+
+            <div class="grid grid-cols-1 gap-3">
+              <div
+                class="p-3 rounded-xl bg-slate-100 dark:bg-slate-900/80 border border-slate-200 dark:border-white/5 flex items-center gap-2.5 hover:scale-105 transition-transform">
+                <i class="fa-solid fa-table text-emerald-600 text-lg"></i>
+                <span class="text-xs font-bold text-heading-primary">Microsoft Excel</span>
+              </div>
+              <div
+                class="p-3 rounded-xl bg-slate-100 dark:bg-slate-900/80 border border-slate-200 dark:border-white/5 flex items-center gap-2.5 hover:scale-105 transition-transform">
+                <i class="fa-solid fa-briefcase text-blue-500 text-lg"></i>
+                <span class="text-xs font-bold text-heading-primary">MS Office Suite</span>
+              </div>
+              <div
+                class="p-3 rounded-xl bg-slate-100 dark:bg-slate-900/80 border border-slate-200 dark:border-white/5 flex items-center gap-2.5 hover:scale-105 transition-transform">
+                <i class="fa-brands fa-github text-slate-700 dark:text-slate-300 text-lg"></i>
+                <span class="text-xs font-bold text-heading-primary">Git & GitHub</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Featured Projects Section -->
+    <section id="projects" class="py-20 border-t border-slate-200 dark:border-white/10">
+      <div class="space-y-12">
+        <div class="space-y-2 animated-reveal">
+          <span class="text-xs font-extrabold uppercase tracking-widest text-cyan-500 font-heading">My Work</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold font-heading text-heading-primary">Featured Projects</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="glass-card rounded-3xl overflow-hidden flex flex-col justify-between group animated-reveal">
+            <div class="p-6 space-y-4">
+              <div
+                class="w-full h-44 rounded-2xl bg-slate-200 dark:bg-slate-900 border border-slate-300 dark:border-white/5 flex items-center justify-center relative overflow-hidden">
+                <i
+                  class="fa-solid fa-laptop-code text-5xl text-cyan-500/40 group-hover:scale-125 group-hover:rotate-6 transition-transform duration-500"></i>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <span
+                  class="px-2.5 py-1 rounded-md bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 text-[10px] font-bold">Node.js</span>
+                <span
+                  class="px-2.5 py-1 rounded-md bg-purple-500/10 text-purple-600 dark:text-purple-400 text-[10px] font-bold">MongoDB</span>
+              </div>
+
+              <h3 class="text-lg sm:text-xl font-bold font-heading text-heading-primary">Fullstack Web Application</h3>
+              <p class="text-body-muted text-xs leading-relaxed">
+                Backend application built using Node.js and Express with MongoDB integration for user authentication and
+                RESTful API endpoints.
+              </p>
+            </div>
+
+            <div class="p-6 pt-0 flex items-center justify-between">
+              <a href="https://github.com/hrishiprajapati7" target="_blank" rel="noopener noreferrer"
+                class="text-xs font-bold text-cyan-600 dark:text-cyan-400 hover:underline flex items-center gap-1.5">
+                <i class="fa-brands fa-github"></i> GitHub Code
+              </a>
+              <a href="#" class="text-xs font-bold text-heading-primary hover:text-cyan-500 flex items-center gap-1">
+                <span>Demo</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="glass-card rounded-3xl overflow-hidden flex flex-col justify-between group animated-reveal">
+            <div class="p-6 space-y-4">
+              <div
+                class="w-full h-44 rounded-2xl bg-slate-200 dark:bg-slate-900 border border-slate-300 dark:border-white/5 flex items-center justify-center relative overflow-hidden">
+                <i
+                  class="fa-solid fa-database text-5xl text-purple-500/40 group-hover:scale-125 group-hover:-rotate-6 transition-transform duration-500"></i>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <span
+                  class="px-2.5 py-1 rounded-md bg-purple-500/10 text-purple-600 dark:text-purple-400 text-[10px] font-bold">SQL</span>
+                <span
+                  class="px-2.5 py-1 rounded-md bg-blue-500/10 text-blue-600 dark:text-blue-400 text-[10px] font-bold">JavaScript</span>
+              </div>
+
+              <h3 class="text-lg sm:text-xl font-bold font-heading text-heading-primary">Database Query Portal</h3>
+              <p class="text-body-muted text-xs leading-relaxed">
+                Relational SQL query interface designed to organize database tables, filter data records, and export
+                reports to Excel formats.
+              </p>
+            </div>
+
+            <div class="p-6 pt-0 flex items-center justify-between">
+              <a href="https://github.com/hrishiprajapati7" target="_blank" rel="noopener noreferrer"
+                class="text-xs font-bold text-cyan-600 dark:text-cyan-400 hover:underline flex items-center gap-1.5">
+                <i class="fa-brands fa-github"></i> GitHub Code
+              </a>
+              <a href="#" class="text-xs font-bold text-heading-primary hover:text-cyan-500 flex items-center gap-1">
+                <span>Demo</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="glass-card rounded-3xl overflow-hidden flex flex-col justify-between group animated-reveal">
+            <div class="p-6 space-y-4">
+              <div
+                class="w-full h-44 rounded-2xl bg-slate-200 dark:bg-slate-900 border border-slate-300 dark:border-white/5 flex items-center justify-center relative overflow-hidden">
+                <i
+                  class="fa-solid fa-laptop text-5xl text-emerald-500/40 group-hover:scale-125 group-hover:rotate-6 transition-transform duration-500"></i>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <span
+                  class="px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-[10px] font-bold">HTML/CSS</span>
+                <span
+                  class="px-2.5 py-1 rounded-md bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 text-[10px] font-bold">Bootstrap</span>
+              </div>
+
+              <h3 class="text-lg sm:text-xl font-bold font-heading text-heading-primary">Responsive Portfolio Website
+              </h3>
+              <p class="text-body-muted text-xs leading-relaxed">
+                Modern responsive developer portfolio engineered with dynamic theme switching, glassmorphic UI, and
+                mobile-first design.
+              </p>
+            </div>
+
+            <div class="p-6 pt-0 flex items-center justify-between">
+              <a href="https://github.com/hrishiprajapati7" target="_blank" rel="noopener noreferrer"
+                class="text-xs font-bold text-cyan-600 dark:text-cyan-400 hover:underline flex items-center gap-1.5">
+                <i class="fa-brands fa-github"></i> GitHub Code
+              </a>
+              <a href="#" class="text-xs font-bold text-heading-primary hover:text-cyan-500 flex items-center gap-1">
+                <span>Demo</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Contact Section -->
+    <section id="contact" class="py-20 border-t border-slate-200 dark:border-white/10">
+      <div class="glass-card p-6 sm:p-12 rounded-3xl relative overflow-hidden animated-reveal">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          <div class="lg:col-span-7 space-y-6">
+            <span class="text-xs font-extrabold uppercase tracking-widest text-cyan-500 font-heading">LET'S
+              CONNECT</span>
+
+            <h2 class="text-3xl sm:text-5xl font-extrabold font-heading text-heading-primary leading-tight">
+              Let's work together
+            </h2>
+
+            <p class="text-body-muted text-sm sm:text-base leading-relaxed">
+              I am actively seeking entry-level developer roles and internships. Feel free to contact me directly!
+            </p>
+
+            <div class="space-y-3 pt-2">
+              <a href="mailto:hrishiprajapati7@gmail.com"
+                class="p-4 rounded-2xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-white/10 hover:border-cyan-500 flex items-center gap-4 text-heading-primary hover:text-cyan-500 transition-all hover:translate-x-2">
+                <div
+                  class="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-500 text-lg shrink-0">
+                  <i class="fa-solid fa-envelope"></i>
+                </div>
+                <div class="text-xs sm:text-sm font-bold truncate">hrishiprajapati7@gmail.com</div>
+              </a>
+
+              <a href="tel:8736095491"
+                class="p-4 rounded-2xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-white/10 hover:border-cyan-500 flex items-center gap-4 text-heading-primary hover:text-cyan-500 transition-all hover:translate-x-2">
+                <div
+                  class="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-500 text-lg shrink-0">
+                  <i class="fa-solid fa-phone"></i>
+                </div>
+                <div class="text-xs sm:text-sm font-bold">+91 8736095491</div>
+              </a>
+
+              <div
+                class="p-4 rounded-2xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-white/10 flex items-center gap-4 text-heading-primary">
+                <div
+                  class="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 text-lg shrink-0">
+                  <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <div class="text-xs sm:text-sm font-bold">Jaunpur, Uttar Pradesh, India</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 flex flex-col items-center justify-center text-center space-y-6">
+            <div
+              class="w-44 h-44 sm:w-56 sm:h-56 rounded-3xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-white/10 flex flex-col items-center justify-center relative shadow-2xl animate-float-slow">
+              <svg class="w-24 h-24 sm:w-28 sm:h-28 text-cyan-500 filter drop-shadow-[0_0_15px_rgba(56,189,248,0.5)]"
+                fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                  d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                </path>
+              </svg>
+              <div
+                class="absolute bottom-3 text-[10px] font-extrabold tracking-widest text-cyan-500 uppercase font-heading">
+                Developer Bot</div>
+            </div>
+
+            <div
+              class="text-cyan-600 dark:text-cyan-400 font-extrabold font-heading text-base sm:text-xl tracking-widest uppercase animate-pulse">
+              "Eat Sleep Code Repeat"
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Notification Toast -->
+  <div id="toast"
+    class="fixed bottom-6 right-6 px-5 py-3 rounded-2xl bg-slate-900 text-white font-bold text-xs shadow-2xl border border-cyan-500/40 hidden z-50 transition-all">
+    <span id="toast-message">Message</span>
+  </div>
+
+
+  <!-- External Script -->
+  <script src="script.js"></script>
+</body>
+
+</html>
