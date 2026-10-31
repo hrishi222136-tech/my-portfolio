@@ -69,6 +69,8 @@
 
   <!-- Particle Background Canvas -->
   <canvas id="particles-canvas"></canvas>
+  <!-- 3D scene (three.js) -->
+  <canvas id="gl3d" aria-hidden="true"></canvas>
 
   <!-- Glowing Visual Orbs -->
   <div
@@ -209,7 +211,7 @@
         </div>
 
         <div class="lg:col-span-5 flex justify-center lg:justify-end relative animated-reveal">
-          <div class="relative w-56 h-56 sm:w-72 sm:h-72 rounded-full p-2 flex items-center justify-center">
+          <div id="hero-photo" class="relative w-56 h-56 sm:w-72 sm:h-72 rounded-full p-2 flex items-center justify-center">
             <div
               class="absolute inset-0 rounded-full bg-gradient-to-tr from-cyan-500 via-purple-500 to-pink-500 animate-spin-slow opacity-90 blur-sm">
             </div>
@@ -657,10 +659,7 @@
     <span id="toast-message">Message</span>
   </div>
 
-  <footer class="py-8 border-t border-slate-200 dark:border-white/10 text-center text-xs text-body-muted relative z-10">
-    <p>© 2026 Hrishi Kumar Prajapati. All rights reserved.</p>
-  </footer>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <!-- External Script -->
   <script src="script.js"></script>
 </body>

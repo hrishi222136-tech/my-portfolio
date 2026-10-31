@@ -151,11 +151,55 @@ html.light nav a:hover {
 /* Scroll Reveal animation */
 .animated-reveal {
     opacity: 0;
-    transform: translateY(30px);
+    transform: perspective(1000px) translateY(50px) rotateX(20deg) scale(0.96);
+    transform-origin: 50% 100%;
     transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .animated-reveal.visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
+}
+
+/* ===== 3D LAYER ===== */
+#gl3d {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Cards: glare that follows the mouse while tilting */
+.glass-card {
+    position: relative;
+}
+
+.glass-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: var(--go, 0);
+    transition: opacity 0.3s;
+    background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), rgba(255, 255, 255, 0.18), transparent 55%);
+}
+
+html.light .glass-card::after {
+    background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), rgba(56, 189, 248, 0.18), transparent 55%);
+}
+
+/* Hero photo depth layers */
+#hero-photo {
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .animated-reveal {
+        transform: none;
+        opacity: 1;
+    }
 }
